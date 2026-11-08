@@ -645,7 +645,7 @@ namespace TwomAi
         private bool TryDiscoverHiddenPlayer(float now)
         {
             var player = PlayerTarget.Instance;
-            if (player == null || !player.IsHidden || player.IsDead || now - _lookStartedAt < HiddenDiscoverDelay)
+            if (player == null || !player.IsHidden || player.IsDead || AiDirector.GhostMode || now - _lookStartedAt < HiddenDiscoverDelay)
                 return false;
 
             if (!AiMath.IsSameFloor(transform.position, player.Position)

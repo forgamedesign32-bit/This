@@ -82,6 +82,8 @@ namespace TwomAi
     public static class AiIds
     {
         public const int PlayerSourceId = 0;
+        // QA test noise: not the player, so ghost mode does not filter it out.
+        public const int TestSourceId = -1;
 
         private static int _next;
 

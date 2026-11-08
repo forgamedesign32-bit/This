@@ -24,12 +24,26 @@ namespace TwomAi
         public bool EnhancedMode => _enhancedMode;
         public int BaseSeed => _baseSeed;
         public bool GodMode { get; private set; }
+
+        // QA: enemies and civilians neither see nor hear the player. Kept across scene reloads.
+        public static bool GhostMode { get; private set; }
+
+        private const float TestNoiseStep = 0.2f;
+        private const float TestNoiseMin = 0.2f;
+        private const float TestNoiseMax = 3f;
+
+        // QA: loudness of the test noise raised at the player's position (F11; [ / ] to adjust).
+        public float TestNoiseLoudness { get; private set; } = 1f;
         public bool IsF1Active => _enhancedMode && _config.EnableF1;
         public bool IsF2Active => _enhancedMode && _config.EnableF2;
         public bool IsF3Active => _enhancedMode && _config.EnableF3;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetSession() => _hasSessionOverride = false;
+        private static void ResetSession()
+        {
+            _hasSessionOverride = false;
+            GhostMode = false;
+        }
 
         private void Awake()
         {
@@ -79,6 +93,17 @@ namespace TwomAi
 
             if (keyboard.f9Key.wasPressedThisFrame)
                 ForceGuardAlert(70f);
+
+            if (keyboard.f10Key.wasPressedThisFrame)
+                ToggleGhostMode();
+
+            if (keyboard.leftBracketKey.wasPressedThisFrame)
+                AdjustTestNoise(-TestNoiseStep);
+            else if (keyboard.rightBracketKey.wasPressedThisFrame)
+                AdjustTestNoise(TestNoiseStep);
+
+            if (keyboard.f11Key.wasPressedThisFrame)
+                EmitTestNoise();
         }
 
         public void ToggleMode() => Reload(!_enhancedMode, _baseSeed);
@@ -89,6 +114,27 @@ namespace TwomAi
         {
             GodMode = !GodMode;
             AiLog.Add($"QA: god mode {(GodMode ? "ON" : "OFF")}");
+        }
+
+        public void ToggleGhostMode()
+        {
+            GhostMode = !GhostMode;
+            AiLog.Add($"QA: ghost mode {(GhostMode ? "ON" : "OFF")}");
+        }
+
+        public void AdjustTestNoise(float delta)
+        {
+            TestNoiseLoudness = Mathf.Clamp(Mathf.Round((TestNoiseLoudness + delta) * 10f) / 10f, TestNoiseMin, TestNoiseMax);
+        }
+
+        public void EmitTestNoise()
+        {
+            var player = PlayerTarget.Instance;
+            if (player == null)
+                return;
+
+            AiEventBus.EmitNoise(player.Position, TestNoiseLoudness, AiIds.TestSourceId);
+            AiLog.Add($"QA: test noise {TestNoiseLoudness:0.0} at player");
         }
 
         private void Reload(bool enhanced, int seed)

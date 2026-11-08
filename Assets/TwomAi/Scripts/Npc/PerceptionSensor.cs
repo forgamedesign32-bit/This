@@ -68,7 +68,8 @@ namespace TwomAi
         private void SenseSight()
         {
             var player = PlayerTarget.Instance;
-            bool visible = player != null && !player.IsDead && !player.IsHidden && CanSee(player.ChestPosition);
+            bool visible = player != null && !player.IsDead && !player.IsHidden && !AiDirector.GhostMode
+                && CanSee(player.ChestPosition);
             if (!visible)
             {
                 _exposure = 0f;
@@ -111,6 +112,9 @@ namespace TwomAi
         private void OnNoiseEmitted(NoiseEvent noise)
         {
             if (_self == null || _self.IsDead || _config == null || noise.SourceId == _self.Id)
+                return;
+
+            if (AiDirector.GhostMode && noise.SourceId == AiIds.PlayerSourceId)
                 return;
 
             float distance = AiMath.Distance(noise.Position, transform.position);

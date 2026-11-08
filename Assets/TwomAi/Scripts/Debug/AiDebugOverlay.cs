@@ -33,8 +33,15 @@ namespace TwomAi
             if (_visible)
             {
                 UiBlocker.Add(ButtonBarRect());
+                UiBlocker.Add(NoiseBarRect());
                 UiBlocker.Add(new Rect(10f, 225f, 420f, Screen.height - 440f));
             }
+        }
+
+        private static Rect NoiseBarRect()
+        {
+            var bar = ButtonBarRect();
+            return new Rect(bar.center.x - 130f, bar.yMax + 4f, 260f, 26f);
         }
 
         private static Rect ButtonBarRect() => new Rect((Screen.width - ButtonBarWidth) * 0.5f, 64f, ButtonBarWidth, 30f);
@@ -70,7 +77,7 @@ namespace TwomAi
                 return;
 
             var bar = ButtonBarRect();
-            float width = (bar.width - 20f) / 5f;
+            float width = (bar.width - 25f) / 6f;
             float x = bar.x;
             if (GUI.Button(new Rect(x, bar.y, width, bar.height), director.EnhancedMode ? "AI: NEW" : "AI: OLD")) director.ToggleMode();
             x += width + 5f;
@@ -81,6 +88,14 @@ namespace TwomAi
             if (GUI.Button(new Rect(x, bar.y, width, bar.height), VisibilitySystem.XRay ? "X-RAY ON" : "X-RAY OFF")) VisibilitySystem.XRay = !VisibilitySystem.XRay;
             x += width + 5f;
             if (GUI.Button(new Rect(x, bar.y, width, bar.height), director.GodMode ? "GOD ON" : "GOD OFF")) director.ToggleGodMode();
+            x += width + 5f;
+            if (GUI.Button(new Rect(x, bar.y, width, bar.height), AiDirector.GhostMode ? "GHOST ON" : "GHOST OFF")) director.ToggleGhostMode();
+
+            // Test noise at the player's position: [-] [emit] [+]
+            var noise = NoiseBarRect();
+            if (GUI.Button(new Rect(noise.x, noise.y, 40f, noise.height), "-")) director.AdjustTestNoise(-0.2f);
+            if (GUI.Button(new Rect(noise.x + 45f, noise.y, noise.width - 90f, noise.height), $"NOISE {director.TestNoiseLoudness:0.0}")) director.EmitTestNoise();
+            if (GUI.Button(new Rect(noise.xMax - 40f, noise.y, 40f, noise.height), "+")) director.AdjustTestNoise(0.2f);
         }
 
         private void DrawStateTags()
