@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502007e610ed74c49aaf197d25fc35bd, type: 3}
+  m_Name: AiTuningConfig
+  m_EditorClassIdentifier: Assembly-CSharp::TwomAi.AiTuningConfig
+  <EnableF1>k__BackingField: 1
+  <EnableF2>k__BackingField: 1
+  <EnableF3>k__BackingField: 1
+  <BaseRandomSeed>k__BackingField: 10
+  <ViewDistance>k__BackingField: 6
+  <ViewAngle>k__BackingField: 110
+  <VisionDetectHold>k__BackingField: 0.4
+  <SenseInterval>k__BackingField: 0.2
+  <CloseSenseRadius>k__BackingField: 1.2
+  <HearingRadius>k__BackingField: 8
+  <WalkNoise>k__BackingField: 0.35
+  <RunNoise>k__BackingField: 0.8
+  <DoorNoise>k__BackingField: 0.6
+  <AttackNoise>k__BackingField: 0.5
+  <RunSpeedThreshold>k__BackingField: 3.5
+  <HearingThreshold>k__BackingField: 0.25
+  <WallNoiseMultiplier>k__BackingField: 0.6
+  <AlertOnNoise>k__BackingField: 20
+  <AlertOnVisual>k__BackingField: 55
+  <AlertOnCorpse>k__BackingField: 35
+  <AlertOnVisualReport>k__BackingField: 30
+  <AlertDecayDelay>k__BackingField: 5
+  <AlertDecayPerSecond>k__BackingField: 6
+  <StageSuspicious>k__BackingField: 20
+  <StageSearching>k__BackingField: 50
+  <StageCombatReady>k__BackingField: 80
+  <StageHysteresis>k__BackingField: 5
+  <MinNormalStateDuration>k__BackingField: 2
+  <InvestigateDuration>k__BackingField: 6
+  <InvestigateHesitationMax>k__BackingField: 0.8
+  <SearchDuration>k__BackingField: 12
+  <SearchRadius>k__BackingField: 6
+  <SearchPointsPerGuard>k__BackingField: 3
+  <PatrolPrimaryWeight>k__BackingField: 0.65
+  <PatrolAlternativeWeight>k__BackingField: 0.35
+  <RepeatNodePenalty>k__BackingField: 0.5
+  <PatrolWaitMin>k__BackingField: 1
+  <PatrolWaitMax>k__BackingField: 3
+  <LegacyPatrolWait>k__BackingField: 2
+  <CommunicationRange>k__BackingField: 8
+  <ReportDelay>k__BackingField: 0.5
+  <ReportTTL>k__BackingField: 8
+  <ReportRefreshInterval>k__BackingField: 2
+  <StrongNoiseReportThreshold>k__BackingField: 0.5
+  <MaxAssignedPursuers>k__BackingField: 2
+  <SearchSlotSpacing>k__BackingField: 2
+  <CivilianSafeDuration>k__BackingField: 10
+  <CivilianDecisionCooldown>k__BackingField: 1.5
+  <CivilianOccupiedPenalty>k__BackingField: 15
+  <CivilianNoLockPenalty>k__BackingField: 10
+  <PathBlockedTimeout>k__BackingField: 2
+  <MaxFailures>k__BackingField: 2

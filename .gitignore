@@ -1,0 +1,30 @@
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+*.csproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vs/
+.idea/
+*.apk
+*.aab
+crashlytics-buildid.txt
+sysinfo.txt
+
+# Unity Asset Store package: import from the Asset Store (see README)
+/Assets/Starter Assets/
+/Assets/Starter Assets.meta
