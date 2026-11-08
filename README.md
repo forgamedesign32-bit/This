@@ -6,6 +6,16 @@ This War of Mine 야간 수색 단계의 적 AI 개선안을 보여주는 프로
 - **F2 분대 협력:** 경비들이 침입자 정보를 공유하고, 추적조·우회조·출입구 경계조로 역할을 나눕니다.
 - **F3 주민 반응:** 주민이 도주하고, 문을 잠그고, 숨거나, 살려 달라고 빕니다.
 
+## 바로 실행 (Windows 빌드)
+[`Release/TWOM_AI_Prototype_Win64.zip`](Release/TWOM_AI_Prototype_Win64.zip)을 내려받아 압축을 풀고 `Build/This_Proto.exe`를 실행합니다.
+
+QA 단축키:
+- F5: Legacy/Enhanced 모드 전환
+- F6: 재시작
+- F7: 무적
+- F10: 유령 모드
+- F11: 테스트 소음 (`[` `]` 키로 크기 조절)
+
 ## 프로젝트 열기
 1. Unity 6000.x로 프로젝트를 엽니다. 버전은 `ProjectSettings/ProjectVersion.txt`를 확인하세요.
 2. 메뉴 `Tools/TWOM AI/Build Prototype Scene`을 실행한 뒤 Play 합니다.
