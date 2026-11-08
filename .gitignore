@@ -24,7 +24,3 @@
 *.aab
 crashlytics-buildid.txt
 sysinfo.txt
-
-# Unity Asset Store package: import from the Asset Store (see README)
-/Assets/Starter Assets/
-/Assets/Starter Assets.meta
