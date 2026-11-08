@@ -182,6 +182,25 @@ namespace TwomAi
             _mover.DoorOpenNoise = _config.DoorNoise;
             _player.Damaged += OnDamaged;
             EquipWeapon(Weapon);
+            _floorCount = Mathf.Max(_floorCount, CountGraphFloors());
+        }
+
+        // The serialized value predates the 4-floor map; derive it from the waypoint graph instead.
+        private int CountGraphFloors()
+        {
+            var graph = WaypointGraph.Instance;
+            if (graph == null)
+                return 1;
+
+            float maxY = 0f;
+            var nodes = graph.Nodes;
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                if (nodes[i] != null)
+                    maxY = Mathf.Max(maxY, nodes[i].Position.y);
+            }
+
+            return Mathf.RoundToInt(maxY / _floorHeight) + 1;
         }
 
         private void OnDestroy()
